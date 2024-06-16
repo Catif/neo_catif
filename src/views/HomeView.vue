@@ -1,14 +1,16 @@
 <script setup>
-
+import Link from '@/components/Link.vue';
 </script>
 
 <template>
-  <section class="h-full flex justify-center items-center flex-col gap-6">
-    <h1 class="text-5xl">
-      Template VueJS
+  <section class="mt-12 container mx-auto flex items-center flex-col gap-6">
+    <h1 class="text-4xl">
+      Welcome to my neo page
     </h1>
-    <h2 class="text-4xl opacity-60">
-      Version 2.0.0
-    </h2>
+
+    <p class="text-paragraph">
+      To see my real portfolio, 
+      <Link to="https://catif.dev" text="click here" />
+    </p>
   </section>
 </template>
