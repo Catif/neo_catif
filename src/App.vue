@@ -1,11 +1,6 @@
 <script setup>
-import { provide } from 'vue'
 import { RouterView } from 'vue-router'
-import mitt from 'mitt'
 
-const bus = mitt()
-
-provide('bus', bus)
 </script>
 
 <template>
