@@ -1,9 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
 
+import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
+  <Navbar />
+  
   <article class="min-h-full w-full">
     <RouterView v-slot="{ Component }">
       <transition name="fade" mode="out-in">
