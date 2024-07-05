@@ -1,55 +1,107 @@
 <script setup>
-import logo from '@/assets/pictures/logo.png'
-import NavItems from './NavItems.vue';
+import logo from "@/assets/pictures/logo.png";
+import NavItems from "./NavItems.vue";
 
-const leftItems = [
+const leftItems = reactive([
   {
-    title: 'Home',
-    url: '/'
+    title: "Home",
+    url: "/",
+    isHovering: false,
   },
   {
-    title: 'Projects',
-    url: '/projects'
+    title: "ideas",
+    url: "/ideas",
+    isHovering: false,
   },
-]
+]);
 
-const rightItems = [
+const rightItems = reactive([
   {
-    title: 'About',
-    url: '/about'
+    title: "write",
+    url: "/write",
+    isHovering: false,
   },
   {
-    title: 'About',
-    url: '/about'
+    title: "About",
+    url: "/about",
+    isHovering: false,
   },
-]
+]);
+
+const logoHover = ref(false);
+
+const someoneIsHovering = computed(() => {
+  return (
+    leftItems.some((item) => item.isHovering) ||
+    rightItems.some((item) => item.isHovering)
+  );
+});
+
+function onHover({ item, isHovering }) {
+  item.isHovering = isHovering;
+}
 </script>
-
-
-
-
 
 <template>
   <nav class="flex justify-center items-center gap-12 mt-12">
-    <NavItems :items="leftItems" />
+    <NavItems
+      :items="leftItems"
+      :someoneIsHovering="someoneIsHovering"
+      @onHover="onHover"
+    />
 
-    <RouterLink
-      to="/"
-      class="flex items-center justify-center"
-    >
-      <img :src="logo" alt="logo" class="w-24" />
+    <RouterLink to="/" class="flex items-center justify-center">
+      <img
+        :src="logo"
+        alt="logo"
+        class="w-24"
+        :class="{
+          'show-animation': logoHover,
+        }"
+        @mouseover="logoHover = true"
+        @animationend="logoHover = false"
+      />
     </RouterLink>
 
-    <NavItems :items="rightItems" />
+    <NavItems
+      :items="rightItems"
+      :someoneIsHovering="someoneIsHovering"
+      @onHover="onHover"
+    />
   </nav>
 </template>
 
-
-
-
-
-<style scoped>
+<style lang="scss" scoped>
 img {
   image-rendering: pixelated;
+}
+
+img[alt="logo"] {
+  &.show-animation {
+    animation: logo 3s forwards;
+  }
+}
+
+@keyframes logo {
+  0% {
+    width: 6rem;
+  }
+  40% {
+    width: 10rem;
+    transform: rotate(0deg);
+  }
+  45% {
+    transform: rotate(10deg);
+  }
+  55% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    width: 10rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    width: 6rem;
+  }
 }
 </style>
