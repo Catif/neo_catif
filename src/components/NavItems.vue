@@ -1,13 +1,7 @@
 <script setup>
-import TextWave from "./TextWave.vue";
-
 const props = defineProps({
   items: {
     type: Array,
-    required: true,
-  },
-  someoneIsHovering: {
-    type: Boolean,
     required: true,
   },
 });
@@ -20,10 +14,10 @@ const emits = defineEmits(["onHover"]);
     v-for="item in items"
     :key="item.title"
     :to="item.url"
-    class="flex items-center justify-center p-4 bg-card text-text pixel-corners transform transition group/textWave"
+    class="flex items-center justify-center p-4 bg-card text-white pixel-corners transform transition group/textWave"
     :class="{
       'scale-125': item.isHovering,
-      'scale-75 opacity-75': !item.isHovering && someoneIsHovering,
+      'scale-75 opacity-75': !item.isHovering,
     }"
     @mouseover="
       $emit('onHover', {

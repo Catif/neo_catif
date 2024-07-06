@@ -1,6 +1,5 @@
 <script setup>
 import logo from "@/assets/pictures/logo.png";
-import NavItems from "./NavItems.vue";
 
 const leftItems = reactive([
   {
@@ -31,13 +30,6 @@ const rightItems = reactive([
 const logoHover = ref(false);
 const timeoutLogo = ref(null);
 
-const someoneIsHovering = computed(() => {
-  return (
-    leftItems.some((item) => item.isHovering) ||
-    rightItems.some((item) => item.isHovering)
-  );
-});
-
 function onHover({ item, isHovering }) {
   item.isHovering = isHovering;
 }
@@ -56,11 +48,7 @@ function onLeaveLogo() {
 
 <template>
   <nav class="flex justify-center items-center gap-12 mt-12">
-    <NavItems
-      :items="leftItems"
-      :someoneIsHovering="someoneIsHovering"
-      @onHover="onHover"
-    />
+    <NavItems :items="leftItems" @onHover="onHover" />
 
     <RouterLink to="/" class="flex items-center justify-center">
       <img
@@ -76,19 +64,11 @@ function onLeaveLogo() {
       />
     </RouterLink>
 
-    <NavItems
-      :items="rightItems"
-      :someoneIsHovering="someoneIsHovering"
-      @onHover="onHover"
-    />
+    <NavItems :items="rightItems" @onHover="onHover" />
   </nav>
 </template>
 
 <style lang="scss" scoped>
-img {
-  image-rendering: pixelated;
-}
-
 img[alt="logo"] {
   &.show-animation {
     animation: logo 3s forwards;
