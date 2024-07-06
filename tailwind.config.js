@@ -9,15 +9,18 @@ export default {
     colors: {
       transparent: "transparent",
 
-      background: "#351F39",
-      card: "#726A95",
+      background: "#112D4E",
+      card: "#3F72AF",
 
-      primary: "#719FB0",
-      secondary: "#A0C1B8",
+      primary: "#3F72AF",
+      secondary: "#DBE2EF",
 
-      text: "#DEE9ED",
-      paragraph: "#A6A5B1",
-      link: "#719FB0",
+      white: {
+        DEFAULT: "#F9F7F7",
+        300: "#F9F7F7",
+        500: "#DBE2EF",
+      },
+      link: "#3F72AF",
     },
   },
   plugins: [],

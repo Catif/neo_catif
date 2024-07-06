@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Daydream';
-  src: url('../fonts/Daydream.ttf') format('truetype');
+  font-family: "Daydream";
+  src: url("../fonts/Daydream.ttf") format("truetype");
 }
 
 /*****
@@ -51,4 +51,8 @@
 
 a {
   @apply text-link;
+}
+
+img {
+  image-rendering: pixelated;
 }
