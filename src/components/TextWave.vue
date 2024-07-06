@@ -5,6 +5,11 @@ const props = defineProps({
     required: true,
   },
 });
+
+const timeToAnimate = 200; // in ms
+const timeByLetter = computed(() =>
+  Math.floor(timeToAnimate / props.text.length)
+);
 </script>
 
 <template>
@@ -12,8 +17,8 @@ const props = defineProps({
     <span
       v-for="(letter, index) in text"
       :key="letter"
-      class="bottom-0 relative group-hover/textWave:bottom-1 transition-all duration-300"
-      :style="'transition-delay: ' + index * 50 + 'ms'"
+      class="bottom-0 relative group-hover/textWave:bottom-1.5 transition-all duration-300"
+      :style="'transition-delay: ' + index * timeByLetter + 'ms'"
     >
       {{ letter }}
     </span>
