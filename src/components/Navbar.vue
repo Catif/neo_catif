@@ -29,6 +29,7 @@ const rightItems = reactive([
 ]);
 
 const logoHover = ref(false);
+const timeoutLogo = ref(null);
 
 const someoneIsHovering = computed(() => {
   return (
@@ -39,6 +40,17 @@ const someoneIsHovering = computed(() => {
 
 function onHover({ item, isHovering }) {
   item.isHovering = isHovering;
+}
+
+// wait user hover for 3s before animation
+function onHoverLogo() {
+  timeoutLogo.value = setTimeout(() => {
+    logoHover.value = true;
+  }, 3000);
+}
+
+function onLeaveLogo() {
+  clearTimeout(timeoutLogo.value);
 }
 </script>
 
@@ -58,7 +70,8 @@ function onHover({ item, isHovering }) {
         :class="{
           'show-animation': logoHover,
         }"
-        @mouseover="logoHover = true"
+        @mouseover="onHoverLogo"
+        @mouseleave="onLeaveLogo"
         @animationend="logoHover = false"
       />
     </RouterLink>
